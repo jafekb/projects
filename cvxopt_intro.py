@@ -183,7 +183,7 @@ def prob6():
         The optimizer x (ndarray)
         The optimal value (sol['primal objective']*-1000)
     """
-    forest =  np.load("ForestData.npy")
+    forest =  np.load("Data/ForestData.npy")
     acres = forest[:,1]
     npv = forest[:,3] #We will maximize this
     timber = forest[:,4] #>=40,000
