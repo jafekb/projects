@@ -129,7 +129,7 @@ class SimplexSolver(object):
 
 
 # Problem 7
-def prob7(filename='productMix.npz'):
+def prob7(filename='Data/productMix.npz'):
     """Solve the product mix problem for the data in 'productMix.npz'.
 
     Parameters:
@@ -139,7 +139,7 @@ def prob7(filename='productMix.npz'):
         The minimizer of the problem (as an array).
     """
     #Get our variables
-    mix = np.load("productMix.npz")
+    mix = np.load(filename)
     A = mix['A']
     p = mix['p']
     lp = len(p)
