@@ -47,7 +47,7 @@ def main(df, all_pics, overwrite=True):
 		print (pic_name)
 		full_img = plt.imread('sceneimages/{}'.format(pic_name))
 		m,n,k = full_img.shape
-		for a in range(0,m,5): #get every 5th value, because each pixel was just taking TOO long.
+		for a in tqdm(range(0,m,5)): #get every 5th value, because each pixel was just taking TOO long.
 			for b in range(0,n,5):
 				#Get the necessary images
 				color_img, nonblack = circle(a, b, full_img) 
