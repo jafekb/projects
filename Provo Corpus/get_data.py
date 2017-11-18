@@ -35,21 +35,20 @@ def circle(center_x, center_y, img):
 
 	return arr, count
 
-def main(df, overwrite=True):
-	all_pics = list(set(df['picture']))
-	for pic_name in all_pics:
+def main(df, all_pics, overwrite=True):
+	for pic_name in all_pics[::-1]:
 		if overwrite:
-		with open('{}.csv'.format(pic_name.split('.')[0]), 'w') as f:
-			f.write('Picture,X_center,Y_center,')
-			f.write('Brightness,Contrast,FM,')
-			f.write('VerticalContrast,VerticalFM,',)
-			f.write('HorizontalContrast,HorizontalFM\n')
+			with open('CSV2/{}.csv'.format(pic_name.split('.')[0]), 'w') as f:
+				f.write('Picture,X_center,Y_center,')
+				f.write('Brightness,Contrast,FM,')
+				f.write('VerticalContrast,VerticalFM,',)
+				f.write('HorizontalContrast,HorizontalFM\n')
 
 		print (pic_name)
 		full_img = plt.imread('sceneimages/{}'.format(pic_name))
 		m,n,k = full_img.shape
-		for a in range(m):
-			for b in range(n):
+		for a in range(0,m,5): #get every 5th value, because each pixel was just taking TOO long.
+			for b in range(0,n,5):
 				#Get the necessary images
 				color_img, nonblack = circle(a, b, full_img) 
 				if nonblack==0: nonblack = 1 #avoid zerodivision errors.
@@ -66,7 +65,7 @@ def main(df, overwrite=True):
 				horiz_contr = get_RMS_contrast(horiz_img) / nonblack
 				horiz_fm = cv2.Laplacian(horiz_img, cv2.CV_64F).var() / nonblack
 
-				with open('{}.csv'.format(pic_name.split('.')[0]), 'a') as writefile:
+				with open('CSV2/{}.csv'.format(pic_name.split('.')[0]), 'a') as writefile:
 					writefile.write('{},{},{},'.format(pic_name, a, b))
 					writefile.write('{},{},{},'.format(bright, contr, fm))
 					writefile.write('{},{},'.format(vert_contr, vert_fm))
@@ -82,9 +81,17 @@ def main(df, overwrite=True):
 if __name__ == '__main__':
 	df = pd.read_csv('Scene Viewing Fix Report.txt', delimiter='\t')
 	df_1 = df[['CURRENT_FIX_X', 'CURRENT_FIX_Y', 'CURRENT_FIX_DURATION', 'picture', 'CURRENT_FIX_INDEX']]
-	df_1 = df_1[df_1['picture']!='slum2.jpg']
 	
-	p = main(df_1)
+	all_pics1 = ['attic.jpg', 'carnival.jpg', 'quarry2.jpg', 'football_stadium.jpg', 'creek.jpg', 'marsh1.jpg', 
+				'herb_garden.jpg', 'outdoortheme2.jpg', 'hospitalward.jpg', 'desert.jpg', 'Volleyball_Outdoor.jpg', 
+				'moun_tains.jpg', 'closet.jpg', 'lockerroom4.jpg', 'butchers_shop.jpg', 'cavern2.jpg']
+	
+	all_pics2 = ['basketballcourt5.jpg', 'zoocage2.jpg', 'HELIPAD.jpg', 'computerlab4.jpg', 'quarry.jpg', 'diningroom.jpg', 
+				'pool_hall.JPG', 'Warehouse1.jpg', 'playroom.jpg', 'ocean2.jpg', 'Rock_Arch.jpg', 'generalstore.jpg', 
+				'forest1.jpg', 'video_store.jpg', 'FOUNTAIN.jpg', 'slum2.jpg']
+
+	p = main(df_1, all_pics1)
+	# p = main(df_1, all_pics2)
 	
 		
 		
