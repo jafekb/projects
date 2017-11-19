@@ -36,7 +36,7 @@ def circle(center_x, center_y, img):
 	return arr, count
 
 def main(df, all_pics, overwrite=True):
-	for pic_name in all_pics[::-1]:
+	for pic_name in all_pics:
 		if overwrite:
 			with open('CSV2/{}.csv'.format(pic_name.split('.')[0]), 'w') as f:
 				f.write('Picture,X_center,Y_center,')
@@ -47,6 +47,8 @@ def main(df, all_pics, overwrite=True):
 		print (pic_name)
 		full_img = plt.imread('sceneimages/{}'.format(pic_name))
 		m,n,k = full_img.shape
+		if (m != 600) or (n != 800):
+			continue #we'll worry about these strangely-shaped images in a little bit.
 		for a in tqdm(range(0,m,5)): #get every 5th value, because each pixel was just taking TOO long.
 			for b in range(0,n,5):
 				#Get the necessary images
@@ -84,7 +86,7 @@ if __name__ == '__main__':
 	
 	all_pics1 = ['attic.jpg', 'carnival.jpg', 'quarry2.jpg', 'football_stadium.jpg', 'creek.jpg', 'marsh1.jpg', 
 				'herb_garden.jpg', 'outdoortheme2.jpg', 'hospitalward.jpg', 'desert.jpg', 'Volleyball_Outdoor.jpg', 
-				'moun_tains.jpg', 'closet.jpg', 'lockerroom4.jpg', 'butchers_shop.jpg', 'cavern2.jpg']
+				'moun_tains.jpg', 'closet.jpg', 'lockerroom4.jpg']
 	
 	all_pics2 = ['basketballcourt5.jpg', 'zoocage2.jpg', 'HELIPAD.jpg', 'computerlab4.jpg', 'quarry.jpg', 'diningroom.jpg', 
 				'pool_hall.JPG', 'Warehouse1.jpg', 'playroom.jpg', 'ocean2.jpg', 'Rock_Arch.jpg', 'generalstore.jpg', 
