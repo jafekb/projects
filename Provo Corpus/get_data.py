@@ -84,11 +84,10 @@ if __name__ == '__main__':
 	df = pd.read_csv('Scene Viewing Fix Report.txt', delimiter='\t')
 	df_1 = df[['CURRENT_FIX_X', 'CURRENT_FIX_Y', 'CURRENT_FIX_DURATION', 'picture', 'CURRENT_FIX_INDEX']]
 	
+	#The remaining images are the ones that aren't 800x600, I'll figure out how to accommodate eye fixation locations.
 	all_pics1 = ['marsh1.jpg', 'moun_tains.jpg', 'lockerroom4.jpg']
 	
-	all_pics2 = ['basketballcourt5.jpg', 'zoocage2.jpg', 'HELIPAD.jpg', 'computerlab4.jpg', 'quarry.jpg', 'diningroom.jpg', 
-				'pool_hall.JPG', 'Warehouse1.jpg', 'playroom.jpg', 'ocean2.jpg', 'Rock_Arch.jpg', 'generalstore.jpg', 
-				'forest1.jpg', 'video_store.jpg', 'FOUNTAIN.jpg', 'slum2.jpg']
+	all_pics2 = ['basketballcourt5.jpg', 'zoocage2.jpg', 'HELIPAD.jpg', 'computerlab4.jpg']
 
 	p = main(df_1, all_pics1)
 	# p = main(df_1, all_pics2)
