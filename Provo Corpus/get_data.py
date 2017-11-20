@@ -84,9 +84,7 @@ if __name__ == '__main__':
 	df = pd.read_csv('Scene Viewing Fix Report.txt', delimiter='\t')
 	df_1 = df[['CURRENT_FIX_X', 'CURRENT_FIX_Y', 'CURRENT_FIX_DURATION', 'picture', 'CURRENT_FIX_INDEX']]
 	
-	all_pics1 = ['attic.jpg', 'carnival.jpg', 'quarry2.jpg', 'football_stadium.jpg', 'creek.jpg', 'marsh1.jpg', 
-				'herb_garden.jpg', 'outdoortheme2.jpg', 'hospitalward.jpg', 'desert.jpg', 'Volleyball_Outdoor.jpg', 
-				'moun_tains.jpg', 'closet.jpg', 'lockerroom4.jpg']
+	all_pics1 = ['marsh1.jpg', 'moun_tains.jpg', 'lockerroom4.jpg']
 	
 	all_pics2 = ['basketballcourt5.jpg', 'zoocage2.jpg', 'HELIPAD.jpg', 'computerlab4.jpg', 'quarry.jpg', 'diningroom.jpg', 
 				'pool_hall.JPG', 'Warehouse1.jpg', 'playroom.jpg', 'ocean2.jpg', 'Rock_Arch.jpg', 'generalstore.jpg', 
