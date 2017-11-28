@@ -7,8 +7,10 @@ from tqdm import tqdm
 import os
 
 def get_RMS_contrast(arr):
+	#Source: https://en.wikipedia.org/wiki/Contrast_(vision)
 	m,n = np.shape(arr)
-	rms = np.sqrt(np.sum((arr-arr.mean())**2)/(m*n))
+	avg = arr.mean()
+	rms = np.sqrt(np.sum((arr-avg)**2)/(m*n))
 	return rms
 
 def get_brightness(arr):
