@@ -38,8 +38,6 @@ im_names = ['/home/jafekb@byu.local/myacmeshare/projects/Provo Corpus/sceneimage
 everything = {}
 count = 0
 
-print(len(im_names))
-
 for im_name in im_names:
 	print (os.path.basename(im_name))
 	
